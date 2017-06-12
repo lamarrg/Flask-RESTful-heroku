@@ -13,10 +13,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'musik'
 api = Api(app)
 
-@app.before_first_request
-def create_tables():
-	db.create_all() # this will create the defined DB and tables. only really works when you can create here...
-
 jwt = JWT(app, authenticate, identity) # /auth
 
 api.add_resource(Store, '/store/<string:name>')
